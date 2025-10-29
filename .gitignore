@@ -1,4 +1,19 @@
-# Logs
+node_modules/
+dist/
+build/
+.vite/
+/.env
+.DS_Store
+.idea/
+.vscode/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.local
+*.log
+*.tgz# Logs
 logs
 *.log
 npm-debug.log*
