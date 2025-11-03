@@ -3,3 +3,7 @@
 body {
   background-color: rgb(0, 0, 53);
 }
+
+body::-webkit-scrollbar {
+  display: none; /* Oculta a barra de rolagem visualmente */
+}
