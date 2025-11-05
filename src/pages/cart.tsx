@@ -1,12 +1,24 @@
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 
+import type { CartProps } from "../contexts/CartContext";
+
 export function Cart() {
-  const { cardAmount, cart } = useContext(CartContext);
+  const { cardAmount, cart, removeItemCart, adicionarItemCart } =
+    useContext(CartContext);
+
+  function handleRemoveItem(item: CartProps) {
+    return removeItemCart(item);
+  }
+
+  function handleAdicionarItem(item: CartProps) {
+    return adicionarItemCart(item);
+  }
 
   return (
     <div className="text-white w-full max-w-3xl mx-auto min-h-[400px] flex flex-col">
       <h1 className="font-medium text-2xl text-center my-4">Meu carrinho</h1>
+
       {cardAmount > 0 ? (
         <>
           {cart.map((item) => (
@@ -14,19 +26,43 @@ export function Cart() {
               key={item.id}
               className="flex items-center justify-between border-b-2 border-blue-300"
             >
-              <img src={item.cover} alt="logo do produto" className="w-28" />
-              <strong>Preço: R$ {item.price.toFixed(2)}</strong>
+              <img
+                src={item.cover}
+                alt="logo do produto"
+                className="w-28 rounded-lg transform transition duration-300 hover:scale-110"
+              />
+
+              <strong>
+                Preço:{" "}
+                {item.price.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </strong>
+
               <div className="flex justify-center items-center gap-3 text-black">
-                <button className="bg-blue-50 px-2 rounded font-medium flex items-center justify-center cursor-pointer">
+                <button
+                  onClick={() => handleRemoveItem(item)}
+                  className="bg-blue-50 px-2 rounded font-medium flex items-center justify-center cursor-pointer"
+                >
                   -
                 </button>
+
                 <span className="text-white">{item.amount}</span>
-                <button className="bg-blue-50 px-2 rounded font-medium flex items-center justify-center cursor-pointer">
+
+                <button
+                  onClick={() => handleAdicionarItem(item)}
+                  className="bg-blue-50 px-2 rounded font-medium flex items-center justify-center cursor-pointer"
+                >
                   +
                 </button>
               </div>
               <strong className="float-right">
-                Subtotal: R$ {item.total.toFixed(2)}
+                Subtotal:{" "}
+                {item.total.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
               </strong>
             </section>
           ))}

@@ -16,7 +16,7 @@ export function Header() {
           className="flex items-center gap-1 justify-center text-2xl border border-s-blue-200 px-3 rounded-md font-extralight cursor-pointer"
         >
           <FaDragon size={20} color="white" />
-          Dev Shop
+          RJ Shop
         </Link>
         <Link to={"/cart"} className="relative cursor-pointer">
           <FiShoppingCart size={24} color="white" />
