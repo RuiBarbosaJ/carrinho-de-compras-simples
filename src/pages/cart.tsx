@@ -4,8 +4,13 @@ import { CartContext } from "../contexts/CartContext";
 import type { CartProps } from "../contexts/CartContext";
 
 export function Cart() {
-  const { cardAmount, cart, removeItemCart, adicionarItemCart } =
-    useContext(CartContext);
+  const {
+    cardAmount,
+    cart,
+    removeItemCart,
+    adicionarItemCart,
+    totalItemsCarts,
+  } = useContext(CartContext);
 
   function handleRemoveItem(item: CartProps) {
     return removeItemCart(item);
@@ -66,7 +71,7 @@ export function Cart() {
               </strong>
             </section>
           ))}
-          <p className="font-bold mt-4">Total: R$ {}</p>
+          <p className="font-bold mt-4">Total: {totalItemsCarts}</p>
         </>
       ) : (
         <div className="flex-1 flex items-center justify-center">

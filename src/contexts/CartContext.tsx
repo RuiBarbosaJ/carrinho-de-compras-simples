@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode } from "react";
+import { createContext, useMemo, useState, type ReactNode } from "react";
 import type { ProductsProps } from "../pages/home";
 
 interface CartContextData {
@@ -7,6 +7,7 @@ interface CartContextData {
   addItemCart: (newItem: ProductsProps) => void;
   removeItemCart: (itemRemoveCart: CartProps) => void;
   adicionarItemCart: (itemAddCart: CartProps) => void;
+  totalItemsCarts: string;
 }
 export interface CartProps {
   id: number;
@@ -18,6 +19,7 @@ export interface CartProps {
   total: number;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const CartContext = createContext({} as CartContextData);
 
 interface CartProviderProps {
@@ -103,6 +105,14 @@ export function CartProvider({ children }: CartProviderProps) {
     });
   }
 
+  const totalItemsCarts = useMemo(() => {
+    const total = cart.reduce((acc, obj) => acc + obj.total, 0);
+    return total.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  }, [cart]); // depende do cart — recalcula só quando o cart muda
+
   return (
     <CartContext.Provider
       value={{
@@ -111,6 +121,7 @@ export function CartProvider({ children }: CartProviderProps) {
         addItemCart,
         removeItemCart,
         adicionarItemCart,
+        totalItemsCarts,
       }}
     >
       {children}
