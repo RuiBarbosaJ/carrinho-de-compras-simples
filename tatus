@@ -1,0 +1,5 @@
+[33m6ae6ced[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m style(ProductDetail): styles implementado
+[33m305963f[m feat(ProductDetail): implementei a pagina de detalhes do produto clicado
+[33ma3242d4[m feat: implementando Toast com a biblioteca react-hot-toast
+[33m98beff9[m feat: finalizando funcionalidades do Cart
+[33m39ce1a7[m feat(CartContext): adicionando as funcionalidade do (cart.tsx)
