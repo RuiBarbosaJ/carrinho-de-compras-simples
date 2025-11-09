@@ -5,6 +5,7 @@ import { api } from "../services/api";
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 export interface ProductsProps {
   id: number;
@@ -47,11 +48,13 @@ export function Home() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
           {products.map((product) => (
             <section key={product.id} className="w-full ">
-              <img
-                className="w-full rounded-lg max-h-70 mb-2 transform transition duration-300 hover:scale-110"
-                src={product.cover}
-                alt={product.title}
-              />
+              <Link to={`/product/${product.id}`}>
+                <img
+                  className="w-full rounded-lg max-h-70 mb-2 transform transition duration-300 hover:scale-110 cursor-pointer"
+                  src={product.cover}
+                  alt={product.title}
+                />
+              </Link>
               <p className="font-medium mt-1 mb-2">{product.title}</p>
               <div className="flex gap-3 items-center">
                 <strong className="text-blue-500 font-mono">
